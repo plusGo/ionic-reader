@@ -1,0 +1,73 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button>
+                <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title>{{book?.name}}</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-card >
+        <ion-card-content style="display: flex;flex-wrap: wrap;">
+            <div style="width: 100px;flex-shrink: 0;flex-grow: 0;padding: 8px;">
+                <img style="width: 100%" *ngIf="book?.images" [src]="book?.images"/>
+            </div>
+            <div style="display: flex;justify-content: space-between;flex-direction: column;padding: 4px 4px 4px 10px">
+                <div style="font-size: 16px;font-weight: 600;color: #000">
+                    {{book?.name}}
+                </div>
+                <div>
+                    作者:{{book?.author}}
+                </div>
+                <div>
+                    分类:{{book?.type}}
+                </div>
+                <div>
+                    {{book?.wordcount}}万字
+                </div>
+                <div>
+                    {{book?.ratings}}分
+                </div>
+
+            </div>
+            <div style="width: 100%">
+                <ion-button (click)="goToRead(book?.id)" expand="full">开始阅读</ion-button>
+            </div>
+        </ion-card-content>
+    </ion-card>
+    <ion-card style="padding: 8px">
+        <ion-card-content>
+            <div style="border-bottom: 1px solid #cccccc;padding-bottom: 8px">
+                {{book?.intro}}
+            </div>
+            <div style="padding: 8px 0;border-bottom: 1px solid #cccccc;">
+                <div style="font-size: 14px;font-weight: 600;padding: 4px 0">标签</div>
+
+                <ion-badge>{{book?.type}}</ion-badge>
+                &nbsp;
+                <ion-badge>{{book?.serialize}}</ion-badge>
+            </div>
+            <div style="padding: 8px 0;">
+                <div style="font-size: 14px;font-weight: 600;padding: 4px 0">喜欢本书的人也喜欢</div>
+                <div style="display: flex">
+                    <div style="padding: 2px">
+                        <img [src]="book?.images" alt="">
+                        <span>{{book?.name}}</span>
+                    </div>
+                    <div style="padding: 2px">
+                        <img [src]="book?.images" alt="">
+                        <span>{{book?.name}}</span>
+                    </div>
+                    <div style="padding: 2px">
+                        <img [src]="book?.images" alt="">
+                        <span>{{book?.name}}</span>
+                    </div>
+                </div>
+
+            </div>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

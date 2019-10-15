@@ -1,0 +1,72 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="secondary">
+            <ion-button>
+                <ion-icon slot="icon-only" name="search"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title> Ionic Reader</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-slides [scrollbar]="true" [pager]="true" [options]="slideOpts">
+
+        <ion-slide>
+            <img src="assets/images/slide-1.jpg"/>
+        </ion-slide>
+
+        <ion-slide>
+            <img src="assets/images/slide-2.jpg"/>
+        </ion-slide>
+
+        <ion-slide>
+            <img src="assets/images/slide-3.jpg"/>
+        </ion-slide>
+
+        <ion-slide>
+            <img src="assets/images/slide-4.jpg"/>
+        </ion-slide>
+        <ion-slide>
+            <img src="assets/images/slide-5.jpg"/>
+        </ion-slide>
+    </ion-slides>
+    <ion-row class="type-guide-wrapper">
+        <ion-col class="type-guide" *ngFor="let bookType of bookTypeOption">
+            <i></i>
+            {{bookType?.name}}
+        </ion-col>
+    </ion-row>
+    <ion-row class="white-space"></ion-row>
+    <ion-card (click)="goToIntro(book?.id)" style="display: flex;" *ngFor="let book of bookList">
+        <div style="width: 80px;flex-shrink: 0;flex-grow: 0;padding: 8px">
+            <img style="width: 100%" [src]="book?.images"/>
+        </div>
+        <div style="display: flex;justify-content: space-between;flex-direction: column;padding: 4px 4px 4px 10px">
+            <div style="font-size: 16px;font-weight: 600;color: #000">
+                {{book?.name}}
+            </div>
+            <div style="height: 34px;font-size: 13px;display: -webkit-box;
+-webkit-box-orient: vertical;
+-webkit-line-clamp: 2;
+overflow: hidden;">
+                {{book?.intro}}
+            </div>
+
+            <div style="font-size: 12px;display: flex;justify-content: space-between;align-items: center">
+                <span>
+                <ion-icon name="person"></ion-icon>
+                {{book?.author}}
+                </span>
+                <span>
+                    <ion-badge color="primary">{{book?.type}}</ion-badge>
+                    &nbsp;
+                    <ion-badge color="primary">{{book?.serialize}}</ion-badge>
+                    &nbsp;
+                    <ion-badge color="primary">{{book?.wordcount}}万字</ion-badge>
+                    &nbsp;
+                </span>
+            </div>
+        </div>
+    </ion-card>
+</ion-content>
