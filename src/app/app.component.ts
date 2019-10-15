@@ -5,6 +5,7 @@ import {SplashScreen} from '@ionic-native/splash-screen/ngx';
 import {StatusBar} from '@ionic-native/status-bar/ngx';
 import {hasExtra, NgxHttpConfig, NgxHttpExtra} from 'ngx-http-builder';
 import {LoadingService} from './core/service/loading.service';
+import {timer} from 'rxjs';
 
 @Component({
     selector: 'app-root',
@@ -26,7 +27,11 @@ export class AppComponent {
                     }
                     this.loadingService.show();
                 },
-                response: (res) => this.loadingService.hide()
+                response: (res) => {
+                    timer(800).subscribe(() => {
+                        this.loadingService.hide();
+                    });
+                }
             });
         this.initializeApp();
     }

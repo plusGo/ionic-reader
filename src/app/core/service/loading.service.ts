@@ -5,18 +5,21 @@ import {LoadingController} from '@ionic/angular';
     providedIn: 'root'
 })
 export class LoadingService {
+    private loading;
 
     constructor(public loadingController: LoadingController) {
     }
 
     async show() {
-        const loading = await this.loadingController.create({
+        this.loading = await this.loadingController.create({
             message: '加载中',
         });
-        await loading.present();
+        await this.loading.present();
     }
 
     hide() {
-        this.loadingController.dismiss();
+        if(this.loading){
+            this.loading.dismiss();
+        }
     }
 }
